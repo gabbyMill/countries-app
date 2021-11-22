@@ -10,7 +10,7 @@ function useCountries(countriesJson) {
       obj.name.toLowerCase().includes(countryCard.toLowerCase())
     );
     setCountryList(filtered);
-  }, [countryCard]);
+  }, [countryCard, countriesJson]); // Watching for changes on countriesJson ?
 
   return [countryCard, setCountryCard, countryList];
 }
