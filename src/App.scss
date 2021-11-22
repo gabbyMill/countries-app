@@ -1,0 +1,33 @@
+.App {
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 5rem;
+  margin-bottom: 1rem;
+}
+
+.dropdown-menu {
+  height: 40vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  .country-comp {
+    display: flex;
+    cursor: pointer;
+    &:hover {
+      background-color: yellow;
+    }
+    .country-pic {
+      display: flex;
+      align-items: center;
+      height: 1em;
+      margin: auto 1rem;
+    }
+  }
+}
+
+.country-inp {
+  background-color: rgb(152, 204, 152);
+}
