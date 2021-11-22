@@ -1,28 +1,23 @@
 import Dropdown from "react-bootstrap/DropDown";
-import React, { useEffect, useState } from "react";
+import { useRef } from "react"; // useEffect, useState
 import countriesJson from "../assets/countries";
 import CountryCard from "../Components/CountryCard";
 import ToggleDropdown from "../Components/ToggleDropdown";
-// import InputHook from "./InputHook";
-const arrOfCountries = countriesJson.map(obj => obj);
+import useCountries from "./useCountries";
 
 function DropDown(props) {
-  const [countryCard, setCountryCard] = useState("Country Name");
-  const [countryList, setCountryList] = useState(arrOfCountries);
+  const [countryCard, setCountryCard, countryList] =
+    useCountries(countriesJson);
 
-  useEffect(() => {
-    const filtered = arrOfCountries.filter(obj => {
-      if (!countryCard.trim()) return; // makes sure empty string doesn't trip out
-      return obj.name.toLowerCase().includes(countryCard.toLowerCase());
-    });
-    setCountryList(filtered);
-  }, [countryCard]); // countryList ?
+  const tglBtn = useRef(); /* used bootstrap for dropdown */
 
   return (
-    <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
+    <Dropdown ref={tglBtn}>
+      <Dropdown.Toggle varianst="succsess" id="dropdown-basic">
         <ToggleDropdown
-          onInputChange={e => setCountryCard(e.target.value)}
+          onInputChange={e => {
+            setCountryCard(e.target.value);
+          }}
           country={countryCard}
         />
       </Dropdown.Toggle>
@@ -31,11 +26,10 @@ function DropDown(props) {
           return (
             <CountryCard
               onClick={e => {
-                console.log(e.target.textContent);
                 setCountryCard(e.target.textContent);
               }}
               name={obj.name}
-              key={i}
+              key={obj.name}
               pic={obj.code}
             />
           );
@@ -46,3 +40,15 @@ function DropDown(props) {
 }
 
 export default DropDown;
+
+/* onClick={() => tglBtn.current.focus()} */
+
+// const [countryCard, setCountryCard] = useState("Country Name");
+// const [countryList, setCountryList] = useState(countriesJson);
+// useEffect(() => {
+//   if (!countryCard.trim()) return; // makes sure empty string doesn't trip out
+//   const filtered = countriesJson.filter(obj =>
+//     obj.name.toLowerCase().includes(countryCard.toLowerCase())
+//   );
+//   setCountryList(filtered);
+// }, [countryCard]);
