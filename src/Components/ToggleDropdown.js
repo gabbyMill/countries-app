@@ -3,6 +3,7 @@ function ToggleDropdown(props) {
   return (
     <>
       <input
+        ref={props.pointer}
         onInput={props.onInputChange}
         className="country-inp"
         value={props.country}
