@@ -4,7 +4,7 @@ function CountryCard(props) {
   }
   return (
     <div className="country-comp" onClick={props.onClick}>
-      <h4>{props.name}</h4>
+      <h4 className="country-name">{props.name}</h4>
       <img
         className="country-pic"
         src={`https://flagcdn.com/32x24/${props.pic.toLowerCase()}.png`}
